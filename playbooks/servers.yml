@@ -1,8 +1,32 @@
 - hosts: localhost
-  roles:
-    - server_all   # runs on ALL servers
-    - { role: server_general, when: "'server_general' in group_names" }
-    - { role: server_docker, when: "'server_docker' in group_names" }
-    - { role: server_swarm_manager, when: "'server_swarm_manager' in group_names" }
-    - { role: server_swarm_host, when: "'server_swarm_host' in group_names" }
-    - { role: server_utility, when: "'server_utility' in group_names" }
+  gather_facts: true
+
+  tasks:
+    - name: Run tasks for ALL servers
+      import_role:
+        name: server_all
+
+    - name: Run general server role
+      import_role:
+        name: server_general
+      when: "'server_general' in group_names"
+
+    - name: Run docker server role
+      import_role:
+        name: server_docker
+      when: "'server_docker' in group_names"
+
+    - name: Run swarm manager role
+      import_role:
+        name: server_swarm_manager
+      when: "'server_swarm_manager' in group_names"
+
+    - name: Run swarm host role
+      import_role:
+        name: server_swarm_host
+      when: "'server_swarm_host' in group_names"
+
+    - name: Run utility server role
+      import_role:
+        name: server_utility
+      when: "'server_utility' in group_names"
