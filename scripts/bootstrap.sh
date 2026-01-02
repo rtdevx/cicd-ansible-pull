@@ -15,12 +15,9 @@ sudo apt install -y ansible git curl
 
 echo "Creating ansible-pull wrapper..."
 sudo tee /usr/local/bin/ansible-pull-wrapper >/dev/null <<EOF
+
 #!/usr/bin/env bash
-/usr/bin/ansible-pull \
-  -U "$REPO_URL" \
-  -i inventory/dynamic_inventory.yml \
-  "$PLAYBOOK" \
-  --clean
+/usr/bin/ansible-pull -U "$REPO_URL" "$PLAYBOOK" --clean
 EOF
 
 sudo chmod +x /usr/local/bin/ansible-pull-wrapper
@@ -36,3 +33,5 @@ sudo curl -s -o /etc/systemd/system/ansible-pull.timer \
 echo "Reloading systemd and enabling timer..."
 sudo systemctl daemon-reload
 sudo systemctl enable --now ansible-pull.timer
+
+echo "Bootstrap complete."
