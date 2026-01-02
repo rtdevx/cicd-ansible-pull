@@ -1,5 +1,6 @@
 - hosts: localhost
   roles:
+    - server_all   # runs on ALL servers
     - { role: server_general, when: "'server_general' in group_names" }
     - { role: server_docker, when: "'server_docker' in group_names" }
     - { role: server_swarm_manager, when: "'server_swarm_manager' in group_names" }
