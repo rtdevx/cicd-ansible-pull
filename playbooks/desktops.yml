@@ -1,0 +1,4 @@
+- hosts: localhost
+  roles:
+    - { role: desktop_general, when: "'desktop_general' in group_names" }
+    - { role: desktop_development, when: "'desktop_development' in group_names" }

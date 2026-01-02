@@ -1,0 +1,7 @@
+- hosts: localhost
+  roles:
+    - { role: server_general, when: "'server_general' in group_names" }
+    - { role: server_docker, when: "'server_docker' in group_names" }
+    - { role: server_swarm_manager, when: "'server_swarm_manager' in group_names" }
+    - { role: server_swarm_host, when: "'server_swarm_host' in group_names" }
+    - { role: server_utility, when: "'server_utility' in group_names" }

@@ -1,0 +1,11 @@
+- hosts: localhost
+  gather_facts: true
+
+  tasks:
+    - name: Include server playbook
+      include_playbook: servers.yml
+      when: "'servers' in group_names"
+
+    - name: Include desktop playbook
+      include_playbook: desktops.yml
+      when: "'desktops' in group_names"
