@@ -3,7 +3,9 @@ Ansible pull repository for Ubuntu-based Servers and Desktops.
 
 # Usage
 
-`bash <(curl -s https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main/scripts/bootstrap.sh)`
+```
+bash <(curl -s https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main/scripts/bootstrap.sh)
+```
 
 # Architecture
 
