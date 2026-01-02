@@ -8,8 +8,8 @@
 
     - name: Run general server role
       import_role:
-        name: server_general
-      when: "'server_general' in group_names"
+        name: server_iac
+      when: "'server_iac' in group_names"
 
     - name: Run docker server role
       import_role:

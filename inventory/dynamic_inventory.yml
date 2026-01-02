@@ -9,7 +9,7 @@ groups:
   servers: "*-srv-*"
   desktops: "*-dsk-*"
 
-  server_general: "*-srv-gen-*"
+  server_general: "*-srv-iac-*"
   server_docker: "*-srv-docker-*"
   server_swarm_manager: "*-srv-docker-mgr-*"
   server_swarm_host: "*-srv-docker-host-*"
