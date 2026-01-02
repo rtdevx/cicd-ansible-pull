@@ -1,6 +1,10 @@
 # ansible-pull
 Ansible pull repository for Ubuntu-based Servers and Desktops.
 
+# Usage
+
+`bash <(curl -s https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main/scripts/bootstrap.sh)`
+
 # Architecture
 
 ```
@@ -87,16 +91,17 @@ These are short, consistent, and still clearly map to your existing group names.
 | desktop_general     | `*-dsk-gen-*` |
 | desktop_development | `*-dsk-dev-*` |
 
-## 🧠 Example Hostnames Using the Short Patterns
+## 🧠 Example Hostnames
 
 ### Servers
 
-- `prod-srv-g-01`    
-- `prod-srv-dkr-01`    
-- `prod-srv-dkr-m-01`    
-- `prod-srv-dkr-h-01`    
-- `prod-srv-u-01`
+- `prod-srv-gen-01`    
+- `prod-srv-docker-01`    
+- `prod-srv-docker-mgr-01`    
+- `prod-srv-docker-host-01`    
+- `prod-srv-util-01`
+
 ### Desktops
 
-- `stg-dsk-g-01`    
-- `stg-dsk-d-01`
+- `stg-dsk-gen-01`    
+- `stg-dsk-dev-01`
