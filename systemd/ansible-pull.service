@@ -1,8 +1,17 @@
 [Unit]
-Description=Run ansible-pull to configure this machine
+Description=Ansible Pull configuration management
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=oneshot
+User=ansible
+Group=ansible
+WorkingDirectory=/home/ansible/.ansible/pull/%H
 ExecStart=/usr/local/bin/ansible-pull-wrapper
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target

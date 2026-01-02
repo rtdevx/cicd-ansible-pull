@@ -5,6 +5,7 @@ Description=Run ansible-pull every 15 minutes
 OnBootSec=5min
 OnUnitActiveSec=15min
 RandomizedDelaySec=5min
+Unit=ansible-pull.service
 Persistent=true
 
 [Install]
