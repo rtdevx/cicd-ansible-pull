@@ -17,7 +17,7 @@ ansible/
 │   └── common.yml
 │
 ├── roles/
-│   ├── server_general/
+│   ├── server_iac/
 │   │   ├── tasks/main.yml
 │   │   └── defaults/main.yml
 │   ├── server_docker/
@@ -78,11 +78,11 @@ ansible/
 
 | Group                | Name Pattern          |
 | -------------------- | --------------------- |
-| server_general       | `*-srv-gen-*`         |
+| server_iac           | `*-srv-iac-*`         |
 | server_docker        | `*-srv-docker-*`      |
 | server_swarm_manager | `*-srv-docker-mgr-*`  |
 | server_swarm_host    | `*-srv-docker-host-*` |
-| server_utility       | `*-srv-util-*`        |
+| server_utility       | `*-srv-utl-*`        |
 
 These are short, consistent, and still clearly map to your existing group names.
 
@@ -97,11 +97,11 @@ These are short, consistent, and still clearly map to your existing group names.
 
 ### Servers
 
-- `prod-srv-gen-01`    
+- `prod-srv-iac-01`    
 - `prod-srv-docker-01`    
 - `prod-srv-docker-mgr-01`    
 - `prod-srv-docker-host-01`    
-- `prod-srv-util-01`
+- `prod-srv-utl-01`
 
 ### Desktops
 
