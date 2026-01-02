@@ -18,7 +18,7 @@ sudo tee /usr/local/bin/ansible-pull-wrapper >/dev/null <<EOF
 #!/usr/bin/env bash
 /usr/bin/ansible-pull \
   -U "$REPO_URL" \
-  -i inventory/hosts.yml \
+  -i inventory/dynamic_inventory.yml \
   "$PLAYBOOK" \
   --clean
 EOF
