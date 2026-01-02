@@ -2,7 +2,9 @@
   gather_facts: true
 
   tasks:
-
+    - name: Run tasks for ALL servers
+      import_role:
+        name: server_all
 
     - name: Run general server role
       import_role:
