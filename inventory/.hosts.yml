@@ -1,3 +1,16 @@
+all:
+  children:
+    servers:
+      hosts:
+        stg-srv-iac-01:
+        stg-srv-iac-02:
+        stg-srv-iac-03:
+    desktops:
+      hosts:
+        stg-dsk-iac-01:
+        stg-dsk-iac-02:
+
+
 plugin: host_list
 hosts:
   - localhost
@@ -9,7 +22,7 @@ groups:
   servers: "*-srv-*"
   desktops: "*-dsk-*"
 
-  server_iac: "*-srv-iac-*"
+  server_general: "*-srv-iac-*"
   server_docker: "*-srv-docker-*"
   server_swarm_manager: "*-srv-docker-mgr-*"
   server_swarm_host: "*-srv-docker-host-*"
