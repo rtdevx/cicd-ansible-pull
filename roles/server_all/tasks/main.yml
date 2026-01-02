@@ -1,0 +1,5 @@
+---
+# tasks for ALL servers
+- name: Placeholder for server_all role
+  debug:
+    msg: "server_all role executed"
