@@ -1,9 +1,3 @@
-# INFO: Use the constructed inventory plugin
-plugin: constructed
-
-# INFO: Allow hosts that do not match any rule without failing
-strict: false
-
 # INFO: Static host list for dynamic inventory classification
 all:
   hosts:
@@ -22,6 +16,12 @@ all:
     ws-genp1:
     ws-devs1:
     ws-devp1: 
+
+# INFO: Use the constructed inventory plugin
+plugin: constructed
+
+# INFO: Allow hosts that do not match any rule without failing
+strict: false
 
 # INFO: Define dynamic groups based on hostname patterns
 groups:
