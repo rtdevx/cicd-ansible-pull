@@ -35,6 +35,12 @@ echo "Installing dependencies..."
 sudo apt update -y
 sudo apt install -y ansible git curl python3 python3-venv python3-pip # NOTE: Required packages. Without those, ansible‑pull will fail silently.
 
+# INFO: Prepare logfile
+echo "Preparing logfile..."
+sudo touch /var/log/ansible.log
+sudo chown ansible:ansible /var/log/ansible.log
+sudo chmod 755 /var/log/ansible.log
+
 # INFO: Prepare ansible working directory
 echo "Preparing ansible working directory..."
 sudo -u ansible mkdir -p /home/ansible/.ansible/pull
