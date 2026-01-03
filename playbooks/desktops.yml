@@ -1,17 +1,13 @@
-- hosts: localhost
+- hosts: desktops
   gather_facts: true
 
   tasks:
-    - name: Run tasks for ALL desktops
-      import_role:
-        name: desktop_all
-
-    - name: Run general desktop role
+    - name: Apply general desktop role
       import_role:
         name: desktop_general
       when: "'desktop_general' in group_names"
 
-    - name: Run development desktop role
+    - name: Apply development desktop role
       import_role:
         name: desktop_development
       when: "'desktop_development' in group_names"

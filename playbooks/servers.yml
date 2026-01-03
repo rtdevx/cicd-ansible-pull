@@ -1,32 +1,28 @@
-- hosts: localhost
+- hosts: servers
   gather_facts: true
 
   tasks:
-    - name: Run tasks for ALL servers
-      import_role:
-        name: server_all
-
-    - name: Run general server role
+    - name: Apply IAC role
       import_role:
         name: server_iac
       when: "'server_iac' in group_names"
 
-    - name: Run docker server role
+    - name: Apply Docker role
       import_role:
         name: server_docker
       when: "'server_docker' in group_names"
 
-    - name: Run swarm manager role
+    - name: Apply Swarm Manager role
       import_role:
         name: server_swarm_manager
       when: "'server_swarm_manager' in group_names"
 
-    - name: Run swarm host role
+    - name: Apply Swarm Host role
       import_role:
         name: server_swarm_host
       when: "'server_swarm_host' in group_names"
 
-    - name: Run utility server role
+    - name: Apply Utility role
       import_role:
         name: server_utility
       when: "'server_utility' in group_names"

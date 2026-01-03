@@ -1,9 +1,11 @@
-- hosts: localhost
+- hosts: all
   gather_facts: true
-  tasks: []
 
-- import_playbook: servers.yml
-  when: "'servers' in group_names"
+  tasks:
+    - name: Route to server playbook
+      include_tasks: servers.yml
+      when: "'servers' in group_names"
 
-- import_playbook: desktops.yml
-  when: "'desktops' in group_names"
+    - name: Route to desktop playbook
+      include_tasks: desktops.yml
+      when: "'desktops' in group_names"
