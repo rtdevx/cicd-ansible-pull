@@ -68,42 +68,32 @@ ansible/
 
 ## Server base
 
-- `*-srv-*`
+- `srv-`
 
 ## Desktop base
 
-- `*-dsk-*`
+- `ws-`
 
 ## 🖥️ Servers - Hostname Patterns
 
-| Group                | Name Pattern          |
-| -------------------- | --------------------- |
-| server_iac           | `*-srv-iac-*`         |
-| server_docker        | `*-srv-docker-*`      |
-| server_swarm_manager | `*-srv-docker-mgr-*`  |
-| server_swarm_host    | `*-srv-docker-host-*` |
-| server_utility       | `*-srv-utl-*`        |
+| Category             | Pattern               | Meaning                      |
+| -------------------- | --------------------- | ---------------------------- |
+| server_iac           | **srv-iacp1**         | IAC server, prod, instance 1 |
+| server_swarm_manager | **srv-docker-mgrp1**  | Docker swarm manager, prod   |
+| server_swarm_host    | **srv-docker-hostp1** | Docker swarm worker, prod    |
+| server_utility       | **srv-utlp1**         | Utility server, prod         |
 
 These are short, consistent, and still clearly map to your existing group names.
 
 ## 🖥️ Desktops - Hostname Patterns
 
-| Group               | Name Pattern  |
-| ------------------- | ------------- |
-| desktop_general     | `*-dsk-gen-*` |
-| desktop_development | `*-dsk-dev-*` |
+| Category            | Pattern      | Meaning                     |
+| ------------------- | ------------ | --------------------------- |
+| desktop_general     | **ws-genp1** | General workstation, prod   |
+| desktop_development | **ws-devp1** | Developer workstation, prod |
 
 ## 🧠 Example Hostnames
 
-### Servers
-
-- `prod-srv-iac-01`    
-- `prod-srv-docker-01`    
-- `prod-srv-docker-mgr-01`    
-- `prod-srv-docker-host-01`    
-- `prod-srv-utl-01`
-
-### Desktops
-
-- `stg-dsk-gen-01`    
-- `stg-dsk-dev-01`
+`srv-iacp1` → prod, server
+`srv-iacs1` → staging, server
+`ws-devs3` → staging, workstation

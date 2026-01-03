@@ -1,23 +1,52 @@
 #!/usr/bin/env bash
 set -e
 
-###############################################
-# 1. Configuration
-###############################################
+# INFO: Configuration
 REPO_URL="https://github.com/rtdevx/cicd-ansible-pull"
 RAW_URL="https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main"
 PLAYBOOK="playbooks/common.yml"
 
-###############################################
-# 2. Install dependencies
-###############################################
+# INFO: Ensure ansible user exists
+echo "Ensuring ansible user exists..."
+
+if ! id ansible >/dev/null 2>&1; then
+    echo "Creating ansible user..."
+    sudo useradd \
+        --system \
+        --create-home \
+        --shell /usr/sbin/nologin \
+        ansible
+fi
+
+# INFO: Configure passwordless sudo for ansible user
+echo "Configuring sudo privileges..."
+echo "ansible ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/ansible >/dev/null
+sudo chmod 440 /etc/sudoers.d/ansible
+
+# INFO: Prepare SSH directory for ansible user
+echo "Preparing SSH directory for ansible user..."
+
+sudo -u ansible mkdir -p /home/ansible/.ssh
+sudo chmod 700 /home/ansible/.ssh
+sudo chown ansible:ansible /home/ansible/.ssh
+
+# INFO: Install dependencies
 echo "Installing dependencies..."
 sudo apt update -y
-sudo apt install -y ansible git curl
+sudo apt install -y ansible git curl python3 python3-venv python3-pip
 
-###############################################
-# 3. Create ansible-pull wrapper
-###############################################
+# INFO: Prepare log directory
+echo "Preparing log directory..."
+sudo mkdir -p /var/log/ansible-pull
+sudo chown ansible:ansible /var/log/ansible-pull
+sudo chmod 755 /var/log/ansible-pull
+
+# INFO: Prepare ansible working directory
+echo "Preparing ansible working directory..."
+sudo -u ansible mkdir -p /home/ansible/.ansible/pull
+sudo chown -R ansible:ansible /home/ansible/.ansible
+
+# INFO: Create ansible-pull wrapper
 echo "Creating ansible-pull wrapper..."
 sudo tee /usr/local/bin/ansible-pull-wrapper >/dev/null <<EOF
 #!/usr/bin/env bash
@@ -26,26 +55,19 @@ EOF
 
 sudo chmod +x /usr/local/bin/ansible-pull-wrapper
 
-###############################################
-# 4. Install systemd service and timer
-###############################################
+# INFO: Install systemd service and timer
 echo "Installing systemd service and timer..."
 
-# Install fresh unit files
 sudo curl -s -o /etc/systemd/system/ansible-pull.service \
   "$RAW_URL/systemd/ansible-pull.service"
 
 sudo curl -s -o /etc/systemd/system/ansible-pull.timer \
   "$RAW_URL/systemd/ansible-pull.timer"
 
-###############################################
-# 5. Reload systemd and enable timer
-###############################################
+# INFO: Reload systemd and enable timer
 echo "Reloading systemd and enabling timer..."
 sudo systemctl daemon-reload
 sudo systemctl enable --now ansible-pull.timer
 
-###############################################
-# 6. Done
-###############################################
+# INFO: Bootstrap complete
 echo "Bootstrap complete."
