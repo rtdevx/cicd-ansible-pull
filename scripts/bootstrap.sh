@@ -5,6 +5,7 @@ set -e
 # 1. Configuration
 ###############################################
 REPO_URL="https://github.com/rtdevx/cicd-ansible-pull"
+RAW_URL="https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main"
 PLAYBOOK="playbooks/common.yml"
 
 ###############################################
@@ -30,21 +31,12 @@ sudo chmod +x /usr/local/bin/ansible-pull-wrapper
 ###############################################
 echo "Installing systemd service and timer..."
 
-# Ensure no old masked units block installation
-sudo systemctl stop ansible-pull.service 2>/dev/null || true
-sudo systemctl disable ansible-pull.service 2>/dev/null || true
-sudo systemctl unmask ansible-pull.service 2>/dev/null || true
-
-sudo systemctl stop ansible-pull.timer 2>/dev/null || true
-sudo systemctl disable ansible-pull.timer 2>/dev/null || true
-sudo systemctl unmask ansible-pull.timer 2>/dev/null || true
-
 # Install fresh unit files
 sudo curl -s -o /etc/systemd/system/ansible-pull.service \
-  $REPO_URL/raw/main/systemd/ansible-pull.service
+  "$RAW_URL/systemd/ansible-pull.service"
 
 sudo curl -s -o /etc/systemd/system/ansible-pull.timer \
-  $REPO_URL/raw/main/systemd/ansible-pull.timer
+  "$RAW_URL/systemd/ansible-pull.timer"
 
 ###############################################
 # 5. Reload systemd and enable timer
