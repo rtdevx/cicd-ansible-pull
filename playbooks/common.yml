@@ -1,13 +1,12 @@
-- hosts: all
+# INFO: playbooks/common.yml — simple routing example
+- name: All hosts play
+  hosts: all
   gather_facts: true
-  become: true
-  become_user: root
-
   tasks:
     - name: Route to server tasks
-      ansible.builtin.include_tasks: ../tasks/servers.yml
+      include_tasks: tasks/servers.yml
       when: "'servers' in group_names"
 
     - name: Route to desktop tasks
-      ansible.builtin.include_tasks: ../tasks/desktops.yml
+      include_tasks: tasks/desktops.yml
       when: "'desktops' in group_names"
