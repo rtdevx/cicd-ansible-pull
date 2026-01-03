@@ -5,3 +5,4 @@
       - htop
       - vim
     state: present
+    become: true

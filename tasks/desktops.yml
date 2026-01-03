@@ -6,6 +6,4 @@
 - name: Apply development desktop role
   import_role:
     name: desktop_development
-  when: "'desktop_development' in group_names"
-
-  
+  when: "'desktop_development' in group_names"  
