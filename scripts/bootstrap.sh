@@ -33,7 +33,7 @@ sudo chown ansible:ansible /home/ansible/.ssh
 # INFO: Install dependencies
 echo "Installing dependencies..."
 sudo apt update -y
-sudo apt install -y ansible git curl python3 python3-venv python3-pip
+sudo apt install -y ansible git curl python3 python3-venv python3-pip # NOTE: Required packages. Without those, ansible‑pull will fail silently.
 
 # INFO: Prepare log directory
 echo "Preparing log directory..."
