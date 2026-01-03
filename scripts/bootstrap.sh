@@ -30,6 +30,12 @@ sudo chmod +x /usr/local/bin/ansible-pull-wrapper
 ###############################################
 echo "Installing systemd service and timer..."
 
+# Ensure no old masked unit blocks installation
+sudo systemctl stop ansible-pull.timer 2>/dev/null || true
+sudo systemctl disable ansible-pull.timer 2>/dev/null || true
+sudo systemctl unmask ansible-pull.timer 2>/dev/null || true
+
+# Install fresh unit files
 sudo curl -s -o /etc/systemd/system/ansible-pull.service \
   $REPO_URL/raw/main/systemd/ansible-pull.service
 
@@ -41,7 +47,6 @@ sudo curl -s -o /etc/systemd/system/ansible-pull.timer \
 ###############################################
 echo "Reloading systemd and enabling timer..."
 sudo systemctl daemon-reload
-sudo systemctl enable --now ansible-pull.service
 sudo systemctl enable --now ansible-pull.timer
 
 ###############################################
