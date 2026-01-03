@@ -1,5 +1,8 @@
----
-# tasks for ALL servers
-- name: Placeholder for server_all role
-  debug:
-    msg: "server_all role executed"
+- name: Ensure base packages are installed
+  apt:
+    name:
+      - curl
+      - htop
+      - vim
+      - unattended-upgrades
+    state: present    
