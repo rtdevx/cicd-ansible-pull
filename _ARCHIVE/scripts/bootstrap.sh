@@ -4,6 +4,7 @@ set -e
 # INFO: Configuration
 REPO_URL="https://github.com/rtdevx/cicd-ansible-pull"
 RAW_URL="https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main"
+PLAYBOOK="playbooks/common.yml"
 
 # INFO: Ensure ansible user exists
 echo "Ensuring ansible user exists..."
@@ -49,7 +50,7 @@ sudo chown -R ansible:ansible /home/ansible/.ansible
 echo "Creating ansible-pull wrapper..."
 sudo tee /usr/local/bin/ansible-pull-wrapper >/dev/null <<EOF
 #!/usr/bin/env bash
-/usr/bin/ansible-pull -U "$REPO_URL" --clean
+/usr/bin/ansible-pull -U "$REPO_URL" "$PLAYBOOK" --clean
 EOF
 
 sudo chmod +x /usr/local/bin/ansible-pull-wrapper
