@@ -2,10 +2,10 @@
   gather_facts: true
 
   tasks:
-    - name: Route to server playbook
-      include_tasks: servers.yml
+    - name: Route to server tasks
+      ansible.builtin.include_tasks: ../tasks/servers.yml
       when: "'servers' in group_names"
 
-    - name: Route to desktop playbook
-      include_tasks: desktops.yml
+    - name: Route to desktop tasks
+      ansible.builtin.include_tasks: ../tasks/desktops.yml
       when: "'desktops' in group_names"
