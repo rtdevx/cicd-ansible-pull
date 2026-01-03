@@ -41,6 +41,7 @@ sudo curl -s -o /etc/systemd/system/ansible-pull.timer \
 ###############################################
 echo "Reloading systemd and enabling timer..."
 sudo systemctl daemon-reload
+sudo systemctl enable --now ansible-pull.service
 sudo systemctl enable --now ansible-pull.timer
 
 ###############################################
