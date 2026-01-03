@@ -1,12 +1,12 @@
-# INFO: Use the existing 'servers' group name in routing
+# INFO: playbooks/common.yml — simple routing example
 - name: All hosts play
   hosts: all
   gather_facts: true
   tasks:
     - name: Route to server tasks
       include_tasks: ../tasks/servers.yml
-      when: "'servers' in group_names"
+      when: "'server' in group_names"
 
     - name: Route to desktop tasks
       include_tasks: ../tasks/desktops.yml
-      when: "'desktops' in group_names"
+      when: "'desktop' in group_names"
