@@ -4,9 +4,9 @@
   gather_facts: true
   tasks:
     - name: Route to server tasks
-      include_tasks: tasks/servers.yml
+      include_tasks: ../tasks/servers.yml
       when: "'servers' in group_names"
 
     - name: Route to desktop tasks
-      include_tasks: tasks/desktops.yml
+      include_tasks: ../tasks/desktops.yml
       when: "'desktops' in group_names"
