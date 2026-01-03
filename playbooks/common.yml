@@ -1,4 +1,4 @@
-# INFO: playbooks/common.yml — simple routing example
+# INFO: Use the existing 'servers' group name in routing
 - name: All hosts play
   hosts: all
   gather_facts: true
