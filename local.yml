@@ -1,5 +1,5 @@
 # tasks to complete before running roles
-- hosts: servers
+- hosts: servers_iac
   tags: always
   become: true
   pre_tasks:
