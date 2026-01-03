@@ -1,5 +1,5 @@
 [Unit]
-Description=Run ansible-pull every 60 minutes with 30 mins random drift.
+Description=Run ansible-pull every 1 hour with 30 mins random drift.
 
 [Timer]
 OnBootSec=5min
