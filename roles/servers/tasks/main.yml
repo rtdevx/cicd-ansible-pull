@@ -1,14 +1,13 @@
-# Load distro-specific variables
-- include_vars: "{{ ansible_distribution }}.yml"
-  tags: always
-
 - block:
 
-  - include_tasks: unattended_upgrades.yml
-    when:
-      - ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]
-      - unattended_upgrades is defined
-      - unattended_upgrades == true
+  # NOTE: Configure Ansible Pull
 
+  - import_tasks: qemu-agent.yml
+
+  # Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
-    - set_fact: task_failed=true
+    - set_fact: task_failed=true 
+
+    - name: Log the failure
+      debug:
+        msg: "The task has failed, setting task_failed to true."

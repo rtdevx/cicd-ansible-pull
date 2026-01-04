@@ -1,14 +1,8 @@
 ---
-- name: restart_nrpe
-  tags: nagios,nrpe
-  service:
-    name: "{{ nrpe_service }}"
-    state: restarted
-
 - name: restart_qemu_agent
   tags: qemu,qemu-agent
   service:
-    name: "{{ qemu_agent_service }}"
+    name: qemu-guest-agent
     state: restarted
 
 - name: restart_ufw

@@ -22,8 +22,8 @@
 #  roles:
 #    - workstations
 
-#- hosts: servers
-#  tags: servers
-#  become: true
-#  roles:
-#    - servers
+- hosts: servers
+  tags: servers
+  become: true
+  roles:
+    - servers

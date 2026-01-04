@@ -1,3 +1,5 @@
+# NOTE: Base role
+
 - block:
 
   # NOTE: Configure Ansible Pull
