@@ -1,9 +1,9 @@
-[server]
-srv-utls[0:9]
-srv-utlp[0:9]
+# Raspberry Pi
+servers_utility:
+  hosts:
+    srv-utls[0:9]:
 
-srv-iacs[0:9]
-srv-iacp[0:9]
+server:
+  children:
+    servers_utility:   
 
-[workstation]
-ws-devs1
