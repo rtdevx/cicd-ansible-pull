@@ -3,6 +3,7 @@
   # NOTE: Configure Ansible Pull
 
   - import_tasks: qemu-agent.yml
+#  - import_tasks: ufw.yml  
 
   # Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
