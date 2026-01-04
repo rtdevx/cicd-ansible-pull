@@ -1,0 +1,26 @@
+---
+
+#- name: install units for ansible-pull
+#  template:
+#    dest: /etc/systemd/system
+#    src: "{{ item }}"
+#  loop:
+#    - ansible-pull.service
+#    - ansible-pull.timer
+
+- name: system setup | scripts | copy image_prep.sh script
+  tags: scripts
+  copy:
+    src: 
+      - ansible_setup/ansible-pull.service
+      - ansible_setup/ansible-pull.timer
+    dest: /etc/systemd/system
+    owner: root
+    group: root
+    mode: 0755   
+
+- name: enable ansible-pull timer
+  service:
+    name: ansible-pull.timer
+    state: started
+    enabled: yes 
