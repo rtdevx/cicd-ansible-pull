@@ -19,3 +19,8 @@ server:
   children:
     servers_utility:
     servers_iac:
+
+server:
+  hosts:
+    srv-utls[0:9]
+    srv-utlp[0:9]
