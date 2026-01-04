@@ -14,7 +14,7 @@
 - name: system setup | scripts | copy image_prep.sh script
   tags: scripts
   copy:
-    src: {{ item }}      
+    src: "{{ item }}"
     dest: /etc/systemd/system
     owner: root
     group: root
