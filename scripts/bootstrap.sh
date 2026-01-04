@@ -48,6 +48,7 @@ sudo chown -R ansible:ansible /home/ansible/.ansible
 # INFO: Create ansible-pull wrapper
 echo "Creating ansible-pull wrapper..."
 sudo tee /usr/local/bin/ansible-pull-wrapper >/dev/null <<EOF
+
 #!/usr/bin/env bash
 /usr/bin/ansible-pull -U "$REPO_URL" --clean
 EOF

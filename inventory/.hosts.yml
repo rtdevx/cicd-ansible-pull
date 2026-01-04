@@ -1,0 +1,33 @@
+servers:
+  hosts:
+    srv-iacp[1:9]:
+    srv-iacs[1:9]:
+    srv-utlp[1:9]:
+    srv-utls[1:9]:
+
+workstations:
+  hosts:
+    ws-genp[1:9]:
+    ws-devp[1:9]:
+    ws-gens[1:9]:
+    ws-devs[1:9]:
+
+servers_iac:
+  hosts: 
+    srv-iacp[1:9]:
+    srv-iacs[1:9]:
+
+servers_utility:
+  hosts: 
+    srv-utlp[1:9]:
+    srv-utls[1:9]:   
+
+workstations_general:
+  hosts:
+    ws-genp[1:9]:
+    ws-gens[1:9]:
+
+workstations_dev:
+  hosts:
+    ws-devp[1:9]:
+    ws-devs[1:9]:
