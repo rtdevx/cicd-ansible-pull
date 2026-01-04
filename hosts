@@ -1,18 +1,41 @@
-# NOTE: Utility Servers
+# NOTE: Servers
+
+# Servers Utility
 servers_utility:
   hosts:
-    srv-.*:
+    srv-utls[0:9]:
     srv-utlp[0:9]:
 
-# NOTE: IAC Servers
+# Servers IAC
 servers_iac:
   hosts:
     srv-iacs[0:9]:
-    srv-iacp[0:9]:    
+    srv-iacp[0:9]:
 
+# NOTE: Workstations
+
+# Workstations General
+workstations_general:
+  hosts:
+    ws-gens[0:9]:
+    ws-genp[0:9]:
+
+# Workstations Development
+workstations_dev:
+  hosts:
+    ws-devs[0:9]:
+    ws-devp[0:9]:
+    
 # NOTE: Groups
+
+# INFO: Server Groups
 servers:
   children:
     servers_utility:
-    servers_iac:   
+    servers_iac:
 
+# INFO: Workstation Groups
+servers:
+  children:
+    servers_utility:
+    servers_iac:
