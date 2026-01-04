@@ -6,7 +6,7 @@
     dest: "/usr/local/bin/ansible-pull-wrapper"
     content: |
       #!/usr/bin/env bash
-      /usr/bin/ansible-pull -U "$REPO_URL" --clean
+      /usr/bin/ansible-pull -U "{{ ansible_repo_url }}" --clean
 
 - name: system setup | scripts | copy image_prep.sh script
   tags: scripts
