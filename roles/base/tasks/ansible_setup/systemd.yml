@@ -1,15 +1,12 @@
 ---
 
-#- name: install units for ansible-pull
-#  template:
-#    dest: /etc/systemd/system
-#    src: "{{ item }}"
-#  loop:
-#    - ansible-pull.service
-#    - ansible-pull.timer
-
-#- include_vars: "{{ ansible_setup }}.yml"
-#  tags: always
+- name: Creating ansible-pull wrapper...
+  tags: scripts
+  copy:
+    dest: "/usr/local/bin/ansible-pull-wrapper"
+    content: |
+      #!/usr/bin/env bash
+      /usr/bin/ansible-pull -U "$REPO_URL" --clean
 
 - name: system setup | scripts | copy image_prep.sh script
   tags: scripts

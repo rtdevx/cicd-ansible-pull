@@ -1,9 +1,14 @@
-{{ ansible_managed|comment }}
-
 [Unit]
-Description=system configuration upgrade
+Description=Ansible Pull configuration management
+Wants=network-online.target
 After=network-online.target
- 
+
 [Service]
-ExecStart=/bin/sh -c 'ansible-pull -U "{{ ansible_pull_url }}" -i "$(uname -n)," --diff'
-TimeoutStopSec=600
+Type=oneshot
+User=ansible
+Group=ansible
+WorkingDirectory=/home/ansible/.ansible/pull/%H
+ExecStart=/usr/local/bin/ansible-pull-wrapper
+
+[Install]
+WantedBy=multi-user.target
