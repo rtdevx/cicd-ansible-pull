@@ -30,8 +30,8 @@
     state: started
     enabled: yes
   loop:  
-    - ansible_setup/ansible-pull.service
-    - ansible_setup/ansible-pull.timer
+    - ansible-pull.service
+    - ansible-pull.timer
 
 # NOTE: Enable logging for snsible
 
