@@ -1,14 +1,16 @@
-# Raspberry Pi
+# NOTE: Utility Servers
 servers_utility:
   hosts:
-    srv-utls[0:9]:
+    srv-utl(s|p*[0:9]):
     srv-utlp[0:9]:
 
+# NOTE: IAC Servers
 servers_iac:
   hosts:
     srv-iacs[0:9]:
     srv-iacp[0:9]:    
 
+# NOTE: Groups
 servers:
   children:
     servers_utility:
