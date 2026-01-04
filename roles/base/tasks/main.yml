@@ -1,11 +1,12 @@
-# Load distro-specific variables
-- include_vars: "{{ ansible_distribution }}.yml"
-  tags: always
-
 - block:
 
   # install software
-  - import_tasks: software/repositories.yml
+  - import_tasks: ansible/systemd.yml
 
+  # Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
-    - set_fact: task_failed=true
+    - set_fact: task_failed=true 
+
+    - name: Log the failure
+      debug:
+        msg: "The task has failed, setting task_failed to true."
