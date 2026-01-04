@@ -6,7 +6,7 @@
 
  # NOTE: Make sure users exist on the system  
   - import_tasks: users/root.yml
-  #- import_tasks: users/robk.yml
+  - import_tasks: users/robk.yml
   #- import_tasks: users/simone.yml
 
   # Rescue section allows you to define tasks that will run if a previous task in a block fails.
