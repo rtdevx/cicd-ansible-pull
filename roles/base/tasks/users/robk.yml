@@ -1,0 +1,44 @@
+#- name: users | robk | create group
+#  tags: users
+#  group:
+#    name: robk
+#    state: present
+
+- name: users | robk | create user
+  tags: users
+  user:
+    name: robk
+#    group: robk
+    groups: adm,ansible,sudo
+    state: present
+    comment: "Rob"
+    password: "{{ robk_passwd }}"
+    shell: /bin/bash
+
+- name: users | robk | robk | add sudoers file
+  tags: users
+  copy:
+    src: users/sudoers_robk
+    dest: /etc/sudoers.d/robk
+    owner: root
+    group: root
+    mode: 0440
+
+- name: users | robk | create .ssh directory
+  tags: dotfiles,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: robk
+    group: robk
+    mode: 0700
+  with_items:
+    - { dir: '/home/robk/.ssh' }
+
+- name: users | robk | add public key
+  tags: dotfiles,users
+  authorized_key:
+    user: robk
+    key: "{{ item }}"
+  with_file:
+    - users/robk/ssh/robk_id_ed25519.pub
