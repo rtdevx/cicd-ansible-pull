@@ -1,7 +1,7 @@
 [server]
 #srv-utls[1:]
 #~(srv-*[1:])
-srv-utl(*)
+srv-.*
 
 [workstation]
 ws-devs1
