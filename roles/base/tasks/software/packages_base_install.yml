@@ -1,3 +1,15 @@
+# NOTE: Install pip
+
+- name: system setup | pip packages | install bpytop
+  tags: packages,system,settings,pip,python
+  become_user: robk
+  pip:
+    executable: /usr/bin/pip3
+    state: latest
+    name: bpytop
+
+# NOTE: Utilities
+
 - name: system setup | utilities | install utility packages
   tags: packages,system,settings
   package:
@@ -6,35 +18,27 @@
       - at
       - colordiff
       - curl
-      - "{{ dns_utils_package}}"
+      - dnsutils
       - htop
       - iotop
-      - "{{ lm_sensors_package }}"
+      - lm-sensors
       - lsof
       - mc
       - mosh
       - ncdu
       - neofetch
       - net-tools
-      - "{{ nfs_client_package }}"
+      - nfs-common
       - nmap
       - ranger
-      - "{{ rename_package }}"
+      - rename
       - rsync
       - screen
       - sshfs
       - tmux
       - traceroute
-      - "{{ vim_package }}"
+      - vim-nox
       - wget
       - whois
-      - zsh
-
-- name: system setup | utilities | install man-pages (arch)
-  tags: packages,system,settings
-  pacman:
-    state: latest
-    name:
-      - man-db
-      - man-pages
-  when: ansible_distribution == "Archlinux"
+      - zsh    
+  when: ansible_distribution in ["Debian", "Pop!_OS", "Ubuntu"]      

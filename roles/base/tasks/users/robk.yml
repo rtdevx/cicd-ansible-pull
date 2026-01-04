@@ -203,4 +203,4 @@
     group: robk
     mode: 0700
   with_items:
-    - { src: 'pathogen.vim', dest: '/home/robk/.vim/autoload/pathogen.vim' }    
+    - { src: 'pathogen.vim', dest: '/home/robk/.vim/autoload/pathogen.vim' }
