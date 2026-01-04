@@ -2,8 +2,15 @@
 servers_utility:
   hosts:
     srv-utls[0:9]:
+    srv-utlp[0:9]:
 
-server:
+servers_iac:
+  hosts:
+    srv-iacs[0:9]:
+    srv-iacp[0:9]:    
+
+servers:
   children:
-    servers_utility:   
+    servers_utility:
+    servers_iac:   
 
