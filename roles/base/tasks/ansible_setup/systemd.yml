@@ -8,8 +8,8 @@
 #    - ansible-pull.service
 #    - ansible-pull.timer
 
-- include_vars: "{{ ansible_setup }}.yml"
-  tags: always
+#- include_vars: "{{ ansible_setup }}.yml"
+#  tags: always
 
 - name: system setup | scripts | copy image_prep.sh script
   tags: scripts
