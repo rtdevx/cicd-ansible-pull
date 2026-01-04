@@ -1,9 +1,9 @@
-# tasks to complete before running roles
-- hosts: servers
-  tags: always
-  become: true
-  pre_tasks:
-    - name: pre-run | update package cache (debian, etc)
-      tags: always
-      apt: update_cache=yes
-      changed_when: False      
+- hosts: all
+  tasks:
+    - name: add hosts to inventory groups
+      add_host:
+        name: "{{ inventory_hostname }}"
+        groups: "{{ hostvars[inventory_hostname].pull_groups }}"
+      changed_when: False
+
+- import_playbook: playbook.yml
