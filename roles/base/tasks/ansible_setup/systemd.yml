@@ -20,8 +20,8 @@
     group: root
     mode: 0755   
   with_items:
-    - ansible-pull.service
-    - ansible-pull.timer
+    - ansible_setup/ansible-pull.service
+    - ansible_setup/ansible-pull.timer
 
 - name: enable ansible-pull timer
   service:
