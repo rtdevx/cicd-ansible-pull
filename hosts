@@ -1,9 +1,21 @@
-[server]
-#srv-utls[0:9]
-#srv-utl(p|s[0:9])
-~(srv-utls1)
+# Servers Utility
+servers_utility:
+  hosts:
+    srv-utls[0:9]
+    srv-utlp[0:9]
 
-#~(web|db).*\.example\.com
+# Servers IAC
+servers_iac:
+  hosts:
+    srv-iacs[0:9]
+    srv-iacp[0:9]
+
 
 [workstation]
 ws-devs1
+
+# Groups
+server:
+  children:
+    servers_utility:
+    servers_iac:
