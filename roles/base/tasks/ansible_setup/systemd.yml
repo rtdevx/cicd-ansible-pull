@@ -1,7 +1,5 @@
 ---
 
-- include_vars: "{{ ansible_setup }}.yml"
-
 - name: Creating ansible-pull wrapper...
   tags: scripts
   copy:
