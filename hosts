@@ -1,6 +1,6 @@
 [server]
 #srv-utls[1:]
-~(srv-)*
+~(srv-*[1:])
 
 [workstation]
 ws-devs1
