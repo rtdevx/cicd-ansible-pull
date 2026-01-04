@@ -1,4 +1,6 @@
-server:
-  hosts:
-    srv-utls[0:9]
-    srv-utlp[0:9]
+[server]
+srv-utls[0:9]
+srv-utlp[0:9]
+
+[workstation]
+ws-devs1
