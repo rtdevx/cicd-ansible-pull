@@ -16,14 +16,14 @@
   roles:
     - base
 
-- hosts: workstations
-  tags: workstations
-  become: true
-  roles:
-    - workstations
+#- hosts: workstations
+#  tags: workstations
+#  become: true
+#  roles:
+#    - workstations
 
-- hosts: servers
-  tags: servers
-  become: true
-  roles:
-    - servers
+#- hosts: servers
+#  tags: servers
+#  become: true
+#  roles:
+#    - servers
