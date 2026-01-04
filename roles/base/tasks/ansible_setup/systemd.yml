@@ -46,7 +46,7 @@
   changed_when: False
 
 - name: ansible setup | add logrotate config for ansible log file
-  tags: ansible-setup
+  tags: ansible
   copy:
     src: ansible_setup/logrotate
     dest: /etc/logrotate.d/ansible
