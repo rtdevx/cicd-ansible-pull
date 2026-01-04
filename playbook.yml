@@ -17,4 +17,4 @@
   hosts: all
   roles:
     - role: ansible-pull
-      ansible_pull_url: https://git.example.com/ansible.git
+      ansible_pull_url: https://github.com/rtdevx/cicd-ansible-pull.git
