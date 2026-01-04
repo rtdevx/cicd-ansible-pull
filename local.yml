@@ -1,4 +1,4 @@
-# tasks to complete before running roles
+# NOTE: Tasks to complete before running roles
 - hosts: all
   tags: always
   become: true
@@ -9,21 +9,21 @@
       changed_when: False
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
-# run roles
+# NOTE: run roles
 - hosts: all
   tags: base
   become: true
   roles:
     - base
 
-#- hosts: workstation
-#  tags: workstation
-#  become: true
-#  roles:
-#    - workstation
+- hosts: workstation
+  tags: workstation
+  become: true
+  roles:
+    - workstation
 
 - hosts: servers
   tags: servers
   become: true
   roles:
-    - servers[-2] == 's'
+    - servers
