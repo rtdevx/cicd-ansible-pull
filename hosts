@@ -28,6 +28,11 @@ workstations_dev:
     
 # NOTE: Groups
 
+servers:
+  children:
+    servers:
+    workstations:
+
 # INFO: Server Groups
 servers:
   children:
@@ -35,7 +40,7 @@ servers:
     servers_iac:
 
 # INFO: Workstation Groups
-servers:
+workstations:
   children:
-    servers_utility:
-    servers_iac:
+    workstations_general:
+    workstations_dev:
