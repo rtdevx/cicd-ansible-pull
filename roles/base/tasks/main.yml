@@ -1,7 +1,8 @@
 - block:
 
   # install software
-  - import_tasks: ansible/systemd.yml
+  - import_tasks: system_setup/clock.yml
+  #- import_tasks: ansible/systemd.yml
 
   # Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
