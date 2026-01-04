@@ -1,11 +1,5 @@
 [server]
-srv-utls[1:]
-#~(srv-*[1:])
-#"~(srv-.*)"
-#"~(web|db).*\.example\.com"
+srv-utls1
 
 [workstation]
 ws-devs1
-
-
-#~(web|db).*\.example\.com
