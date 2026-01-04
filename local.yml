@@ -26,4 +26,4 @@
   tags: servers
   become: true
   roles:
-    - servers[-2] == 's':
+    - servers[-2] == 's'
