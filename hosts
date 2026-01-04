@@ -1,7 +1,7 @@
 # NOTE: Utility Servers
 servers_utility:
   hosts:
-    srv-utl(s|p).*:
+    srv-.*:
     srv-utlp[0:9]:
 
 # NOTE: IAC Servers
