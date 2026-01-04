@@ -1,9 +1,7 @@
-- include_vars: "{{ ansible_setup }}.yml"
-
 - block:
 
-  # install software
-  #- import_tasks: system_setup/clock.yml
+  # NOTE: Configure Ansible Pull
+
   - import_tasks: ansible_setup/systemd.yml
 
   # Rescue section allows you to define tasks that will run if a previous task in a block fails.
