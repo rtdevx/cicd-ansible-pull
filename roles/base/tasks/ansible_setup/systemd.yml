@@ -3,7 +3,7 @@
 - include_vars: ../vars/ansible_setup.yml
 
 # NOTE: Create ansible-pull wrapper
-- name: Creating ansible-pull wrapper...
+- name: BASE | ansible_setup | Create ansible-pull wrapper
   tags: ansible
   copy:
     dest: "/usr/local/bin/ansible-pull-wrapper"
@@ -12,7 +12,7 @@
       /usr/bin/ansible-pull -U "{{ ansible_repo_url }}" --clean
 
 # NOTE: Setup systemd
-- name: system setup | scripts | copy image_prep.sh script
+- name: BASE | ansible_setup | Setup systemd
   tags: ansible
   copy:
     src: "{{ item }}"
@@ -24,7 +24,7 @@
     - ansible_setup/ansible-pull.service
     - ansible_setup/ansible-pull.timer
 
-- name: enable ansible-pull timer
+- name: BASE | ansible_setup | Enable systemd for ansible-pull
   service:
     name: "{{ item }}"
     state: started
@@ -33,9 +33,9 @@
     - ansible-pull.service
     - ansible-pull.timer
 
-# NOTE: Enable logging for snsible
+# NOTE: Enable logging for ansible
 
-- name: ansible setup | create ansible log file
+- name: BASE | ansible_setup | Enable logging for ansible
   tags: ansible
   file:
     path: /var/log/ansible.log
@@ -45,7 +45,7 @@
     state: touch
   changed_when: False
 
-- name: ansible setup | add logrotate config for ansible log file
+- name: BASE | ansible_setup | Enable logging for ansible - logrotate
   tags: ansible
   copy:
     src: ansible_setup/logrotate
@@ -54,7 +54,7 @@
     group: root
     mode: 0644
 
-- name: ansible setup | remove default ansible directory (/etc/ansible) from host
+- name: BASE | ansible_setup | Remove default ansible directory (/etc/ansible) from host
   tags: ansible,ansible-setup
   file:
     path: /etc/ansible
