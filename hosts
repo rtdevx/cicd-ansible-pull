@@ -1,5 +1,5 @@
 [server]
-srv-utls1
+srv-utls[1:]
 
 [workstation]
 ws-devs1
