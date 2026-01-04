@@ -41,10 +41,10 @@
 
   # NOTE: Install pip
 
-#- name: system setup | pip packages | install bpytop
-#  tags: packages,system,settings,pip,python
-#  become_user: robk
-#  pip:
-#    executable: /usr/bin/pip3
-#    state: latest
-#    name: bpytop
+- name: system setup | pip packages | install bpytop
+  tags: packages,system,settings,pip,python
+  become_user: robk
+  pip:
+    executable: /usr/bin/pip3
+    state: latest
+    name: bpytop
