@@ -1,6 +1,6 @@
 - block:
 
-  # NOTE: Configure Ansible Pull
+  # NOTE: Configure Servers
 
   - import_tasks: qemu-agent.yml
 #  - import_tasks: ufw.yml  
