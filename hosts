@@ -36,7 +36,7 @@ servers:
 # INFO: Server Groups
 servers:
   children:
-    servers_utility[-1] == 's':
+    servers_utility:
     servers_iac:
 
 # INFO: Workstation Groups
