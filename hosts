@@ -1,7 +1,7 @@
 [server]
 #srv-utls[0:9]
 #srv-utl(p|s[0:9])
-~(srv)*
+~(srv)
 
 #~(web|db).*\.example\.com
 
