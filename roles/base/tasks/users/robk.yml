@@ -115,3 +115,92 @@
     - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
     - { src: 'vim/vimrc', dest: '.vimrc' }
     - { src: 'zsh/zshrc', dest: '.zshrc' }
+
+- name: users | robk | clone tmux-completion plugin repository
+  tags: dotfiles,users
+  git:
+    repo: https://github.com/srsudar/tmux-completion.git
+    dest: /home/robk/.tmux/plugins/completion
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | robk | clone tmux-continuum plugin repository
+  tags: dotfiles,users
+  git:
+    repo: https://github.com/tmux-plugins/tmux-continuum
+    dest: /home/robk/.tmux/plugins/continuum
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | robk | clone tmux-resurrect plugin repository
+  tags: dotfiles,users
+  git:
+    repo: https://github.com/tmux-plugins/tmux-resurrect
+    dest: /home/robk/.tmux/plugins/resurrect
+    force: yes
+  notify: update_tmux_plugin_perms
+
+- name: users | robk | copy individual zsh config files
+  tags: dotfiles,users
+  copy:
+    src: users/robk/zsh/{{ item.src }}
+    dest: /home/robk/.zsh/{{ item.src }}
+    owner: robk
+    group: robk
+    mode: 0600
+  with_items:
+    - { src: 'aliases.zsh' }
+    - { src: 'bindkey.zsh' }
+    - { src: 'completion.zsh' }
+    - { src: 'exports.zsh' }
+    - { src: 'functions.zsh' }
+    - { src: 'history.zsh' }
+    - { src: 'path.zsh' }
+    - { src: 'plugins.zsh' }
+    - { src: 'prompt.zsh' }
+    - { src: 'setopt.zsh' }
+    - { src: 'theming.zsh' }  
+
+- name: users | robk | copy vim ftype files
+  tags: dotfiles,users
+  copy:
+    src: users/robk/vim/{{ item.src }}
+    dest: /home/robk/.vim/ftplugin/{{ item.src }}
+    owner: robk
+    group: robk
+    mode: 0600
+  with_items:
+    - { src: 'cmake.vim' }
+    - { src: 'cpp.vim' }
+    - { src: 'html.vim' }
+    - { src: 'perl.vim' }
+    - { src: 'python.vim' }
+    - { src: 'ruby.vim' }
+    - { src: 'sql.vim' }
+    - { src: 'xml.vim' }
+
+- name: users | robk | copy vim color files
+  tags: dotfiles,users
+  copy:
+    src: users/robk/vim/{{ item.src }}
+    dest: /home/robk/.vim/colors/{{ item.src }}
+    owner: robk
+    group: robk
+    mode: 0600
+  with_items:
+    - { src: 'bubblegum-256-dark.vim' }
+    - { src: 'darktango.vim' }
+    - { src: 'jellybeans.vim' }
+    - { src: 'xoria256.vim' }
+    - { src: 'zenburn.vim' }
+
+- name: users | robk | install pathogen
+  tags: dotfiles,users
+  copy:
+    src: users/robk/vim/{{ item.src }}
+    dest: "{{ item.dest }}"
+    owner: robk
+    group: robk
+    mode: 0700
+  with_items:
+    - { src: 'pathogen.vim', dest: '/home/robk/.vim/autoload/pathogen.vim' }    
