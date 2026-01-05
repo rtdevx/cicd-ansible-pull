@@ -10,7 +10,7 @@
     content: |
       #!/usr/bin/env bash
       /usr/bin/ansible-pull -U "{{ ansible_repo_url }}" --clean
-  mode: 0755      
+    mode: 0755      
 
 # NOTE: Setup systemd
 - name: ansible_setup | Setup systemd
