@@ -24,28 +24,26 @@
   with_items:
     - { dir: .config }
     - { dir: .config/autostart }
-    - { dir: .config/bpytop }
-    - { dir: .config/gtk-3.0 }
     - { dir: .config/terminator }
     - { dir: .local }
     - { dir: .local/share }
     - { dir: .local/share/applications }
-    - { dir: bin }
-    - { dir: desktop }
-    - { dir: documents }
-    - { dir: downloads }
-    - { dir: projects }
-    - { dir: templates }
+#    - { dir: bin }
+#    - { dir: desktop }
+#    - { dir: documents }
+#    - { dir: downloads }
+#    - { dir: projects }
+#    - { dir: templates }
 
-- name: users | robk | copy user-dirs.dirs
-  tags: dotfiles,dotfiles-robk
-  copy:
-    src: users/robk/user-dirs.dirs
-    dest: /home/robk/.config/user-dirs.dirs
-    owner: robk
-    group: robk
-    mode: 0600
-  notify: update_xdg
+#- name: users | robk | copy user-dirs.dirs
+#  tags: dotfiles,dotfiles-robk
+#  copy:
+#    src: users/robk/user-dirs.dirs
+#    dest: /home/robk/.config/user-dirs.dirs
+#    owner: robk
+#    group: robk
+#    mode: 0600
+#  notify: update_xdg
 
 - name: users | robk | copy personal config files
   tags: dotfiles,dotfiles-robk
@@ -56,12 +54,8 @@
     group: robk
     mode: 0600
   with_items:
-    - { src: 'asunder', dest: '.asunder' }
-    - { src: 'bpytop.conf', dest: '.config/bpytop/bpytop.conf' }
-    - { src: 'directory_bookmarks', dest: '.config/gtk-3.0/bookmarks' }
-    - { src: 'gvimrc', dest: '.gvimrc' }
-    - { src: 'linode-cli', dest: '.config/linode-cli' }
-    - { src: 'mimeapps.list', dest: '.config/mimeapps.list' }
+#    - { src: 'directory_bookmarks', dest: '.config/gtk-3.0/bookmarks' }
+#    - { src: 'gvimrc', dest: '.gvimrc' }
     - { src: 'ssh_client_config', dest: '.ssh/config' }
     - { src: 'terminator_config', dest: '.config/terminator/config' }
 
