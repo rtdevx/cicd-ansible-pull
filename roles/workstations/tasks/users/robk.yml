@@ -1,17 +1,17 @@
 - name: users | robk | remove preinstalled clutter from home directory
   file:
     path: /home/robk/{{ item }}
-    state: directory
+    state: absent
   with_items:
     - examples.desktop
-    - Desktop
-    - Documents
-    - Downloads
-    - Music
-    - Pictures
-    - Public
-    - Templates
-    - Videos
+#    - Desktop
+#    - Documents
+#    - Downloads
+#    - Music
+#    - Pictures
+#    - Public
+#    - Templates
+#    - Videos
 
 - name: users | robk | create personal config directories
   tags: dotfiles,dotfiles-robk
