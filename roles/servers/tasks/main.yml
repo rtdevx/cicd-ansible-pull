@@ -1,6 +1,6 @@
-- block:
+# NOTE: Configure Servers
 
-  # NOTE: Configure Servers
+- block:
 
   - import_tasks: qemu-agent.yml
 #  - import_tasks: ufw.yml  

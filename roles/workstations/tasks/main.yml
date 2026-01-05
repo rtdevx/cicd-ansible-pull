@@ -1,10 +1,8 @@
-# Load distro-specific variables
-- include_vars: "{{ ansible_distribution }}.yml"
-  tags: always
+# NOTE: Configure Workstations
 
 - block:
   ## User configs
-  - import_tasks: users/jay.yml
+  - import_tasks: users/robk.yml
 
 ## desktop environments
 
