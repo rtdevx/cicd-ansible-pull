@@ -1,7 +1,7 @@
 - name: users | robk | remove preinstalled clutter from home directory
   file:
     path: /home/robk/{{ item }}
-    state: absent
+    state: present
   with_items:
     - examples.desktop
     - Desktop
