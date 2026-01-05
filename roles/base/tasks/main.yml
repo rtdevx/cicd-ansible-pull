@@ -13,7 +13,8 @@
   # NOTE: install software
   - import_tasks: software/packages_base_repositories.yml
   - import_tasks: software/packages_base_install.yml
-  - import_tasks: software/packages_base_remove.yml  
+  - import_tasks: software/packages_base_remove.yml
+  - import_tasks: software/packages_base_qemu_agent.yml  
 
   # NOTE: Perform remaining tasks:
   - import_tasks: system_setup/clock.yml
