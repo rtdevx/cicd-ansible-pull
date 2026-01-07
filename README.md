@@ -7,58 +7,6 @@ Ansible pull repository for Ubuntu-based Servers and Desktops.
 bash <(curl -s https://raw.githubusercontent.com/rtdevx/cicd-ansible-pull/main/scripts/bootstrap.sh)
 ```
 
-# Architecture
-
-```
-ansible/
-├── playbooks/
-│   ├── servers.yml
-│   ├── desktops.yml
-│   └── common.yml
-│
-├── roles/
-│   ├── server_iac/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   ├── server_docker/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   ├── server_swarm_manager/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   ├── server_swarm_host/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   ├── server_utility/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   │
-│   ├── desktop_general/
-│   │   ├── tasks/main.yml
-│   │   └── defaults/main.yml
-│   └── desktop_development/
-│       ├── tasks/main.yml
-│       └── defaults/main.yml
-│
-├── inventory/
-│   └── dynamic_inventory.yml
-│
-├── group_vars/
-│   ├── prod/
-│   │   └── main.yml
-│   └── staging/
-│       └── main.yml
-│
-├── host_vars/
-│   └── (empty for now)
-│
-├── systemd/
-│   ├── ansible-pull.service
-│   └── ansible-pull.timer
-│
-└── scripts/
-    └── bootstrap.sh
-```
 # Host Name Patterns
 
 **Server base:**
