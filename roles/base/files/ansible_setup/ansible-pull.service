@@ -7,7 +7,6 @@ After=network-online.target
 Type=oneshot
 User=ansible
 Group=ansible
-WorkingDirectory=/home/ansible/.ansible/pull/%H
 ExecStart=/usr/local/bin/ansible-pull-wrapper
 
 [Install]
