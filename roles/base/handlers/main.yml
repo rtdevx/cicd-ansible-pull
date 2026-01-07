@@ -20,3 +20,9 @@
     owner: robk
     group: robk
     recurse: true
+
+- name: restart_qemu_agent
+  tags: qemu,qemu-agent
+  service:
+    name: qemu-guest-agent
+    state: restarted    
