@@ -28,6 +28,12 @@ sudo -u ansible mkdir -p /home/ansible/.ssh
 sudo chmod 700 /home/ansible/.ssh
 sudo chown ansible:ansible /home/ansible/.ssh
 
+# INFO: Create log file for ansible
+
+sudo touch /var/log/ansible.log
+sudo chown ansible:ansible /var/log/ansible.log
+sudo chmod 0644 /var/log/ansible.log
+
 # INFO: Install dependencies
 echo "Installing dependencies..."
 sudo apt update -y
