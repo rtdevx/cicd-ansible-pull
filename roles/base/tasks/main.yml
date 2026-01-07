@@ -5,6 +5,8 @@
   # NOTE: Configure Ansible Pull
 
   - import_tasks: ansible_setup/systemd.yml
+    become: true
+    become_user: root
 
  # NOTE: Make sure users exist on the system  
   - import_tasks: users/root.yml
