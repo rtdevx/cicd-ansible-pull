@@ -1,74 +1,47 @@
-##################################################################
-# general config                                                 #
-##################################################################
+###############
+# TO BE REMOVED
+###############
 
+Host ux-anss1
+  HostName anss1
+  Port 22
+  User ansible
+  IdentityFile ~/.ssh/id_ansible
+
+Host ux-ansp1
+  HostName ansp1
+  Port 22
+  User ansible
+  IdentityFile ~/.ssh/id_ansible
+
+Host ux-mgrs1
+  HostName mgrs1
+  Port 22
+  User k3s
+  IdentityFile ~/.ssh/id_k3s
+
+Host ux-mgrp1
+  HostName mgrp1
+  Port 22
+  User k3s
+  IdentityFile ~/.ssh/id_k3s
+
+###############
+# NEW
+###############
+
+Host srv-*
+  User robk
+  Port 22
+  IdentityFile ~/.ssh/id_ed25519
+
+#Host ws-*
+#  User ansible
+#  IdentityFile ~/.ssh/id_ansible
+
+Host github.com
+IdentityFile ~/.ssh/id_rsa_git
+Host skynetx.uk
+IdentityFile ~/.ssh/id_ed25519
 Host *
-    ServerAliveInterval 15
-    ServerAliveCountMax 5
-
-##################################################################
-# home machines                                                  #
-##################################################################
-
-Host gateway
-    Hostname gateway.home-network.io
-    Port 65001
-    User jay
-
-Host ha
-    Hostname ha.home-network.io
-    Port 22
-    User root
-
-Host home
-    Hostname vpn.home-network.io
-    Port 2099
-    User jay
-
-Host jarvis
-    Hostname jarvis.home-network.io
-    Port 22
-    User pi
-
-Host music
-    Hostname music.home-network.io
-    Port 22
-    User volumio
-
-Host retro*
-    Hostname %h.home-network.io
-    Port 22
-    User pi
-
-Host storage
-    Hostname storage.home-network.io
-    Port 22
-    User jay
-
-Host vm-host-*
-    Hostname %h.home-network.io
-    Port 22
-    User jay
-
-##################################################################
-# vps                                                            #
-##################################################################
-Host community
-    Hostname community.learnlinux.tv
-    Port 22
-    User jay
-
-Host *link
-    Hostname learnlinux.link
-    Port 22
-    User jay
-
-Host web
-    Hostname web.learnlinux.tv
-    Port 22
-    User jay
-
-Host wiki
-    Hostname wiki.learnlinux.tv
-    Port 22
-    User jay
+StrictHostKeyChecking no
