@@ -18,8 +18,8 @@
 
   # NOTE: Perform remaining tasks:
 #  - import_tasks: system_setup/clock.yml
-#  - import_tasks: system_setup/openssh.yml
-#  - import_tasks: system_setup/upgrades.yml  
+  - import_tasks: system_setup/openssh.yml
+  - import_tasks: system_setup/upgrades.yml  
 
   # Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
