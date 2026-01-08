@@ -24,6 +24,8 @@
   with_items:
     - ansible_setup/ansible-pull.service
     - ansible_setup/ansible-pull.timer
+  notify: 
+    - reload_systemd
 
 - name: ansible_setup | Enable systemd for ansible-pull
   service:

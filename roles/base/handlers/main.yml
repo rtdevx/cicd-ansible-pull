@@ -26,3 +26,7 @@
   service:
     name: qemu-guest-agent
     state: restarted    
+
+- name: reload_systemd
+  tags: systemd
+  command: systemctl daemon-reload
