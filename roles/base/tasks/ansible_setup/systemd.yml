@@ -20,7 +20,8 @@
     dest: /etc/systemd/system
     owner: root
     group: root
-    mode: 0755   
+    mode: 0755
+    force: true   
   with_items:
     - ansible_setup/ansible-pull.service
     - ansible_setup/ansible-pull.timer
