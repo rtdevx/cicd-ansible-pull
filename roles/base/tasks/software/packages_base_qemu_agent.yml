@@ -4,7 +4,7 @@
     state: latest
     name:
       - qemu-guest-agent
-  when: proxmox_instance is defined and proxmox_instance == true
+  when: proxmox_vm is defined and proxmox_vm == true
   notify:
     - restart_qemu_agent
 
@@ -14,4 +14,4 @@
     name: qemu-guest-agent
     enabled: yes
     state: started
-  when: proxmox_instance is defined and proxmox_instance == true
+  when: proxmox_vm is defined and proxmox_vm == true
