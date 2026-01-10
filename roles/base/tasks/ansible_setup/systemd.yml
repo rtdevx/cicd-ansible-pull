@@ -1,6 +1,6 @@
 ---
 
-- include_vars: ../vars/ansible_setup.yml
+#- include_vars: ../vars/main.yml
 
 # NOTE: Create ansible-pull wrapper
 - name: ansible_setup | Create ansible-pull wrapper
