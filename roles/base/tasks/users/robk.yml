@@ -15,7 +15,7 @@
   tags: users
   user:
     name: robk
-    group: robk
+#    group: robk
     groups: adm,ansible,sudo
     state: present
     comment: "Rob"
