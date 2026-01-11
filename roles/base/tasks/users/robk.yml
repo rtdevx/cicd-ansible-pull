@@ -15,7 +15,7 @@
   tags: users
   user:
     name: robk
-#    group: robk
+    group: robk
     groups: adm,ansible,sudo
     state: present
     comment: "Rob"
@@ -74,26 +74,28 @@
     - { dir: '.vim/ftplugin' }
     - { dir: '.zsh' }
 
-- name: users | robk | copy tmux config (server version)
-  tags: dotfiles,users
-  copy:
-    src: users/robk/tmux/tmux.conf.server
-    dest: /home/robk/.tmux.conf
-    owner: robk
-    group: robk
-    mode: 0600
-  when: "'server' not in group_names"
+# ! tmux configs to be inspected and considered at a later stage
+#- name: users | robk | copy tmux config (server version)
+#  tags: dotfiles,users
+#  copy:
+#    src: users/robk/tmux/tmux.conf.server
+#    dest: /home/robk/.tmux.conf
+#    owner: robk
+#    group: robk
+#    mode: 0600
+#  when: "'server' not in group_names"
 
-- name: users | robk | copy tmux config (workstation version)
-  tags: dotfiles,users
-  copy:
-    src: users/robk/tmux/tmux.conf.workstation
-    dest: /home/robk/.tmux.conf
-    owner: robk
-    group: robk
-    mode: 0600
-  when: "'server' in group_names"
+#- name: users | robk | copy tmux config (workstation version)
+#  tags: dotfiles,users
+#  copy:
+#    src: users/robk/tmux/tmux.conf.workstation
+#    dest: /home/robk/.tmux.conf
+#    owner: robk
+#    group: robk
+#    mode: 0600
+#  when: "'server' in group_names"
 
+# ! Certain configs to be inspected and considered at a later stage
 - name: users | robk | copy dotfiles
   tags: dotfiles,users
   copy:
@@ -103,19 +105,20 @@
     group: robk
     mode: 0600
   with_items:
-    - { src: 'bash/bash_aliases', dest: '.bash/bash_aliases' }
+#    - { src: 'bash/bash_aliases', dest: '.bash/bash_aliases' }
     - { src: 'bash/bash_profile', dest: '.bash_profile' }
     - { src: 'bash/bash_prompt', dest: '.bash/bash_prompt' }
-    - { src: 'bash/bash_functions', dest: '.bash/bash_functions' }
-    - { src: 'bash/bashrc', dest: '.bashrc' }
+#    - { src: 'bash/bash_functions', dest: '.bash/bash_functions' }
+#    - { src: 'bash/bashrc', dest: '.bashrc' }
     - { src: 'bash/profile', dest: '.profile' }
     - { src: 'git/gitconfig', dest: '.gitconfig' }
     - { src: 'htop/htoprc', dest: '.config/htop/htoprc' }
     - { src: 'inputrc', dest: '.inputrc' }
-    - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
-    - { src: 'vim/vimrc', dest: '.vimrc' }
-    - { src: 'zsh/zshrc', dest: '.zshrc' }
+#    - { src: 'mc/mc.ini', dest: '.config/mc/ini' }
+#    - { src: 'vim/vimrc', dest: '.vimrc' }
+#    - { src: 'zsh/zshrc', dest: '.zshrc' } # see below
 
+# ! tmux plugins to be inspected and considered at a later stage
 #- name: users | robk | clone tmux-completion plugin repository
 #  tags: dotfiles,users
 #  git:
@@ -140,26 +143,27 @@
 #    force: yes
 #  notify: update_tmux_plugin_perms
 
-- name: users | robk | copy individual zsh config files
-  tags: dotfiles,users
-  copy:
-    src: users/robk/zsh/{{ item.src }}
-    dest: /home/robk/.zsh/{{ item.src }}
-    owner: robk
-    group: robk
-    mode: 0600
-  with_items:
-    - { src: 'aliases.zsh' }
-    - { src: 'bindkey.zsh' }
-    - { src: 'completion.zsh' }
-    - { src: 'exports.zsh' }
-    - { src: 'functions.zsh' }
-    - { src: 'history.zsh' }
-    - { src: 'path.zsh' }
-    - { src: 'plugins.zsh' }
-    - { src: 'prompt.zsh' }
-    - { src: 'setopt.zsh' }
-    - { src: 'theming.zsh' }  
+# ! zsh configurations to be inspected and considered at a later stage
+#- name: users | robk | copy individual zsh config files
+#  tags: dotfiles,users
+#  copy:
+#    src: users/robk/zsh/{{ item.src }}
+#    dest: /home/robk/.zsh/{{ item.src }}
+#    owner: robk
+#    group: robk
+#    mode: 0600
+#  with_items:
+#    - { src: 'aliases.zsh' }
+#    - { src: 'bindkey.zsh' }
+#    - { src: 'completion.zsh' }
+#    - { src: 'exports.zsh' }
+#    - { src: 'functions.zsh' }
+#    - { src: 'history.zsh' }
+#    - { src: 'path.zsh' }
+#    - { src: 'plugins.zsh' }
+#    - { src: 'prompt.zsh' }
+#    - { src: 'setopt.zsh' }
+#    - { src: 'theming.zsh' }  
 
 - name: users | robk | copy vim ftype files
   tags: dotfiles,users
