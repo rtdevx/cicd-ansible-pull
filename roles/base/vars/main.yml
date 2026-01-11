@@ -1,5 +1,5 @@
 # NOTE: ansible_setup | systemd.yml
-ansible_repo_url: https://github.com/rtdevx/homelab/ansible-pull
+ansible_repo_url: https://github.com/rtdevx/cicd-ansible-pull
 
 
 #NOTE: users | robk.yml (Password sha512 hash)

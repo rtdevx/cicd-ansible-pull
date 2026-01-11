@@ -8,6 +8,8 @@ sudo apt update && sudo apt install -y curl
 bash <(curl -s https://github.com/rtdevx/homelab/tree/main/ansible-pull/scripts/bootstrap.sh)
 ```
 
+`scripts/bootstrap.sh` is creating `/usr/local/bin/ansible-wrapper` ececutable as well as `systemd`
+
 # Host Name Patterns
 
 **Server base:**
