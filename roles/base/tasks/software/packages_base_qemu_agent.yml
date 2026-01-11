@@ -1,3 +1,5 @@
+#NOTE: Install qemu-agent only if `prxomox_vm` is defined (group or machine is a member of `proxmox_vm` in hosts.yml) and `proxmox_vm == true`.
+
 - name: qemu-agent | install package
   tags: packages,qemu,qemu-agent
   package:

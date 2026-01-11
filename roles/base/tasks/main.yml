@@ -2,10 +2,6 @@
 
 - block:
 
-  # NOTE: Configure Ansible Pull
-
-  - import_tasks: ansible_setup/systemd.yml
-
  # NOTE: Make sure users exist on the system  
   - import_tasks: users/root.yml
   - import_tasks: users/robk.yml
@@ -18,6 +14,7 @@
 
   # NOTE: Perform remaining tasks:
 #  - import_tasks: system_setup/clock.yml
+  - import_tasks: system_setup/systemd.yml # Setup ansible-pull
   - import_tasks: system_setup/openssh.yml
   - import_tasks: system_setup/upgrades.yml  
 
