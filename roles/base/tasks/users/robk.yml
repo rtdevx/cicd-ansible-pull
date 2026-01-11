@@ -1,8 +1,8 @@
-#- name: users | robk | create group
-#  tags: users
-#  group:
-#    name: robk
-#    state: present
+- name: users | robk | create group
+  tags: users
+  group:
+    name: robk
+    state: present
 
 - name: Check if user exists
   getent:
@@ -116,29 +116,29 @@
     - { src: 'vim/vimrc', dest: '.vimrc' }
     - { src: 'zsh/zshrc', dest: '.zshrc' }
 
-- name: users | robk | clone tmux-completion plugin repository
-  tags: dotfiles,users
-  git:
-    repo: https://github.com/srsudar/tmux-completion.git
-    dest: /home/robk/.tmux/plugins/completion
-    force: yes
-  notify: update_tmux_plugin_perms
+#- name: users | robk | clone tmux-completion plugin repository
+#  tags: dotfiles,users
+#  git:
+#    repo: https://github.com/srsudar/tmux-completion.git
+#    dest: /home/robk/.tmux/plugins/completion
+#    force: yes
+#  notify: update_tmux_plugin_perms
 
-- name: users | robk | clone tmux-continuum plugin repository
-  tags: dotfiles,users
-  git:
-    repo: https://github.com/tmux-plugins/tmux-continuum
-    dest: /home/robk/.tmux/plugins/continuum
-    force: yes
-  notify: update_tmux_plugin_perms
+#- name: users | robk | clone tmux-continuum plugin repository
+#  tags: dotfiles,users
+#  git:
+#    repo: https://github.com/tmux-plugins/tmux-continuum
+#    dest: /home/robk/.tmux/plugins/continuum
+#    force: yes
+#  notify: update_tmux_plugin_perms
 
-- name: users | robk | clone tmux-resurrect plugin repository
-  tags: dotfiles,users
-  git:
-    repo: https://github.com/tmux-plugins/tmux-resurrect
-    dest: /home/robk/.tmux/plugins/resurrect
-    force: yes
-  notify: update_tmux_plugin_perms
+#- name: users | robk | clone tmux-resurrect plugin repository
+#  tags: dotfiles,users
+#  git:
+#    repo: https://github.com/tmux-plugins/tmux-resurrect
+#    dest: /home/robk/.tmux/plugins/resurrect
+#    force: yes
+#  notify: update_tmux_plugin_perms
 
 - name: users | robk | copy individual zsh config files
   tags: dotfiles,users
@@ -194,13 +194,13 @@
     - { src: 'xoria256.vim' }
     - { src: 'zenburn.vim' }
 
-- name: users | robk | install pathogen
-  tags: dotfiles,users
-  copy:
-    src: users/robk/vim/{{ item.src }}
-    dest: "{{ item.dest }}"
-    owner: robk
-    group: robk
-    mode: 0700
-  with_items:
-    - { src: 'pathogen.vim', dest: '/home/robk/.vim/autoload/pathogen.vim' }
+#- name: users | robk | install pathogen
+#  tags: dotfiles,users
+#  copy:
+#    src: users/robk/vim/{{ item.src }}
+#    dest: "{{ item.dest }}"
+#    owner: robk
+#    group: robk
+#    mode: 0700
+#  with_items:
+#    - { src: 'pathogen.vim', dest: '/home/robk/.vim/autoload/pathogen.vim' }
