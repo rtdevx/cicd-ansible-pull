@@ -21,7 +21,7 @@
     comment: "Rob"
     password: "{{ robk_passwd }}"
     shell: /bin/bash
-#  when: user_check is failed
+  when: user_check is failed
 
 - name: users | robk | robk | add sudoers file
   tags: users
