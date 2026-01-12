@@ -2,5 +2,6 @@
 ansible_repo_url: https://github.com/rtdevx/cicd-ansible-pull
 
 
-#NOTE: users | robk.yml (Password sha512 hash)
+# NOTE: users | robk.yml (Password sha512 hash)
+# NOTE: mkpasswd --method=sha-512
 robk_passwd: $6$1mot/4kI7hZI27P0$rEzUif.JzdZrXJztO1CpsLuTFsYM9nrLHVDkqJl5fdzfAGC6aqXDtLV9PWLiGeuu8.EUtTXrWbk1ZiqlxacmE1
