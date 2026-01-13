@@ -18,5 +18,7 @@
 
 - name: servers_iac | Install Terraform
   apt:
+    apt: update_cache=yes
     name: terraform
-    state: latest      
+    state: latest
+  when: ansible_distribution in ["Debian", "Ubuntu"]
