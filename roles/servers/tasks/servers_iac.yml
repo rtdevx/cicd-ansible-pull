@@ -5,6 +5,8 @@
     name:
       - gnupg
       - software-properties-common
+      - apt-transport-https
+      - ca-certificates      
 
 - name: servers_iac | Add HashiCorp GPG key
   apt_key:
