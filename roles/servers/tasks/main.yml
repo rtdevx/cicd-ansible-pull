@@ -8,6 +8,9 @@
   - include_tasks: iac/install_terraform.yml
     when: servers_iac is defined and servers_iac == true
 
+  - include_tasks: iac/install_gh_actions.yml
+    when: servers_iac is defined and servers_iac == true    
+
 # NOTE: Rescue section allows you to define tasks that will run if a previous task in a block fails.
   rescue:
     - set_fact: task_failed=true

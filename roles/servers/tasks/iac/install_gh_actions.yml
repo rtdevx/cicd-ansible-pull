@@ -1,6 +1,6 @@
-# NOTE: Install terraform
+# NOTE: Install GitHub Actions self-hosted Runner
 
-- name: servers_iac | install terraform {{ terraform_version }}
+- name: servers_iac | install required packages
   tags: packages,system,settings
   package:
     state: latest
