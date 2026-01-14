@@ -49,22 +49,22 @@
   with_items:
     - { dir: '/home/{{ runner_user }}/.ssh' }
 
-- name: iac | install_gh_actions.yml | create .vault_key file
-  tags: dotfiles,users
-  file:
-    path: "{{ item.dir }}"
-    state: touch
-    owner: "{{ runner_user }}"
-    group: "{{ runner_user }}"
-    mode: 0700
-  with_items:
-    - { file: '/home/{{ runner_user }}/.vault_key' }
-
 #- name: iac | install_gh_actions.yml | create .vault_key file
+#  tags: dotfiles,users
 #  file:
-#    path: /home/{{ runner_user }}/.vault_key
-#    state: touch
-#    mode: 0700   
+#    path: "{{ item.dir }}"
+#    state: file
+#    owner: "{{ runner_user }}"
+#    group: "{{ runner_user }}"
+#    mode: 0700
+#  with_items:
+#    - { file: '/home/{{ runner_user }}/.vault_key' }
+
+- name: iac | install_gh_actions.yml | create .vault_key file
+  file:
+    path: /home/{{ runner_user }}/.vault_key
+    state: touch
+    mode: 0700   
 
 # NOTE: Download and install GitHub runner
 
