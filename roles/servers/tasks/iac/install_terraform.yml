@@ -1,6 +1,6 @@
 # NOTE: Install terraform
 
-- name: servers_iac | install terraform {{ terraform_version }}
+- name: iac | install_terraform.yml | Install required packages for terraform
   tags: packages,system,settings
   package:
     state: latest
@@ -10,18 +10,18 @@
       - apt-transport-https
       - ca-certificates     
 
-- name: servers_iac | Add HashiCorp GPG key
+- name: iac | install_terraform.yml | Add HashiCorp GPG key
   apt_key:
     url: https://apt.releases.hashicorp.com/gpg
     state: present
 
-- name: servers_iac | Add HashiCorp repository
+- name: iac | install_terraform.yml | Add HashiCorp repository
   apt_repository:
     repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     state: present
     filename: hashicorp
 
-- name: servers_iac | Install Terraform
+- name: iac | install_terraform.yml | Install Terraform {{ terraform_version }}
   package:
     name: terraform={{ terraform_version }}
     state: present

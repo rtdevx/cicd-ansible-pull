@@ -1,29 +1,57 @@
-# NOTE: Install GitHub Actions self-hosted Runner
+# NOTE: Install GitHub Actions self-hosted
 
-- name: servers_iac | install required packages
-  tags: packages,system,settings
-  package:
-    state: latest
-    name:
-      - gnupg
-      - software-properties-common
-      - apt-transport-https
-      - ca-certificates     
-
-- name: servers_iac | Add HashiCorp GPG key
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
+- name: iac | install_gh_actions.yml | create group
+  tags: users
+  group:
+    name: {{ runner_user }}
     state: present
 
-- name: servers_iac | Add HashiCorp repository
-  apt_repository:
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
-    state: present
-    filename: hashicorp
+- name: iac | install_gh_actions.yml | Check if user {{ runner_user }} exists
+  getent:
+    database: passwd
+    key: {{ runner_user }}
+  register: user_check
+  ignore_errors: yes
 
-- name: servers_iac | Install Terraform
-  package:
-    name: terraform={{ terraform_version }}
+- name: iac | install_gh_actions.yml | create user {{ runner_user }}
+  tags: users
+  user:
+    name: {{ runner_user }}
+    group: {{ runner_user }}
+#    groups: adm,ansible,sudo
     state: present
-    allow_downgrade: true
-  when: ansible_distribution in ["Debian", "Ubuntu"]
+    comment: "{{ runner_user }}"
+#    password: "{{ {{ runner_user }}_passwd }}"
+    password_lock: yes
+    shell: /bin/bash    
+    create_home: yes
+  when: user_check is failed
+
+#- name: iac | install_gh_actions.yml | {{ runner_user }} | add sudoers file
+#  tags: users
+#  copy:
+#    src: users/sudoers_{{ runner_user }}
+#    dest: /etc/sudoers.d/{{ runner_user }}
+#    owner: root
+#    group: root
+#    mode: 0440
+
+- name: iac | install_gh_actions.yml | create .ssh directory
+  tags: dotfiles,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: {{ runner_user }}
+    group: {{ runner_user }}
+    mode: 0700
+  with_items:
+    - { dir: '/home/{{ runner_user }}/.ssh' }
+
+###################################################################
+
+#- name: servers_iac | Install Terraform {{ terraform_version }}
+#  package:
+#    name: terraform={{ terraform_version }}
+#    state: present
+#    allow_downgrade: true
+#  when: ansible_distribution in ["Debian", "Ubuntu"]

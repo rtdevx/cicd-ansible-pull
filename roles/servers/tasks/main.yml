@@ -2,7 +2,6 @@
 
 - block:
 
-#  - import_tasks: qemu-agent.yml
 #  - import_tasks: ufw.yml  
 
   - include_tasks: iac/install_terraform.yml
