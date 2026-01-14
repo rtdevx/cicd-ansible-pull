@@ -23,7 +23,7 @@
 
 - name: servers_iac | Install Terraform
   package:
-    name: terraform=1.14
+    name: terraform #=1.14.3
     state: latest
   when: ansible_distribution in ["Debian", "Ubuntu"]
 
