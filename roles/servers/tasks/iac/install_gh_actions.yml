@@ -48,7 +48,7 @@
     mode: 0700
   with_items:
     - { dir: '/home/{{ runner_user }}/.ssh' }
-    - { dir: '/home/{{ runner_user }}/.vault_key' } # for ansible vault
+    - { file: '/home/{{ runner_user }}/.vault_key' } # for ansible vault
 
 # NOTE: Download and install GitHub runner
 
