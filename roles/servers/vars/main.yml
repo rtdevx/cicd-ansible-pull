@@ -12,7 +12,7 @@ runner_labels: "self-hosted,ubuntu"
 github_repo_url: "https://github.com/rtdevx/cicd-ansible-pull"
 
 nfs_server: "192.168.20.5"
-nfs_export: "nfs-ansible-vault"
+nfs_export: "/nfs-ansible-vault"
 mount_point: "/mnt/vault"
 mount_opts: "ro,nosuid,nodev,noexec,sync,hard,intr"
 

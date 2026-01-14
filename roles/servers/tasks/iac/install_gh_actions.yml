@@ -96,24 +96,22 @@
 
 # NOTE: Mount nfs to access ansible_key
 
-- name: Ensure NFS client packages are installed
+- name: iac | install_gh_actions.yml | Ensure NFS client packages are installed
   package:
     name: nfs-common
     state: present
 
-- name: Create mount directory
+- name: iac | install_gh_actions.yml | Create mount directory
   file:
     path: "{{ mount_point }}"
     state: directory
     mode: '0700'
 
-- name: Mount read-only NFS share and ensure persistence
+- name: iac | install_gh_actions.yml | Mount read-only NFS share and ensure persistence
   mount:
     src: "{{ nfs_server }}:{{ nfs_export }}"
     path: "{{ mount_point }}"
     fstype: nfs
     opts: "ro,sync,hard,intr"
     state: mounted
-
-##########
 
