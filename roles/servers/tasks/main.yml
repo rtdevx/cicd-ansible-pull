@@ -5,7 +5,8 @@
 #  - import_tasks: qemu-agent.yml
 #  - import_tasks: ufw.yml  
 
-  - include_tasks: servers_iac.yml
+  - include_tasks: 
+      - iac/install_terraform.yml
     when: servers_iac is defined and servers_iac == true
 
 # NOTE: Rescue section allows you to define tasks that will run if a previous task in a block fails.
