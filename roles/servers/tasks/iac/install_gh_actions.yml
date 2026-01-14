@@ -49,16 +49,12 @@
   with_items:
     - { dir: '/home/{{ runner_user }}/.ssh' }
 
-#- name: iac | install_gh_actions.yml | create .vault_key file
-#  tags: dotfiles,users
-#  file:
-#    path: "{{ item.dir }}"
-#    state: file
-#    owner: "{{ runner_user }}"
-#    group: "{{ runner_user }}"
-#    mode: 0700
-#  with_items:
-#    - { file: '/home/{{ runner_user }}/.vault_key' }
+# NOTE: Create .vault_key for ansible vault
+
+- name: iac | install_gh_actions.yml | check if .vault_key file exists
+  stat:
+    path: "/home/{{ runner_user }}/.vault_key"
+  register: file_vaultkey
 
 - name: iac | install_gh_actions.yml | create .vault_key file
   file:
@@ -66,7 +62,9 @@
     state: touch
     owner: "{{ runner_user }}"
     group: "{{ runner_user }}"
-    mode: 0700
+    mode: 0600
+  when: 
+    - file_vaultkey.stat.exists == false    
 
 # NOTE: Download and install GitHub runner
 
@@ -117,7 +115,7 @@
   command: >
     ./config.sh --unattended
     --url {{ github_repo_url }}
-    --token {{ lookup('env','SECRET_GITHUB_RUNNER') }}
+    --token {{ github_runner_token }}
     --name {{ inventory_hostname }}
     --labels {{ runner_labels }}
   args:
