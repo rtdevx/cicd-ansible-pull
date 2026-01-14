@@ -92,6 +92,45 @@
     owner: "{{ runner_user }}"
     group: "{{ runner_user }}"
 
+- name: iac | install_gh_actions.yml | Configure runner
+  command: >
+    ./config.sh --unattended
+    --url {{ github_repo_url }}
+    --token {{ lookup('env','SECRET_GITHUB_RUNNER') }}
+    --name {{ inventory_hostname }}
+    --labels {{ runner_labels }}
+  args:
+    chdir: "{{ runner_dir }}"
+  become_user: "{{ runner_user }}"
+  register: runner_config
+  changed_when: "'Runner successfully added' in runner_config.stdout"
+
+- name: iac | install_gh_actions.yml | Install systemd service for GitHub Runner
+  copy:
+    dest: /etc/systemd/system/github-runner.service
+    content: |
+      [Unit]
+      Description=GitHub Actions Runner
+      After=network.target
+
+      [Service]
+      ExecStart={{ runner_dir }}/run.sh
+      User={{ runner_user }}
+      WorkingDirectory={{ runner_dir }}
+      Restart=always
+
+      [Install]
+      WantedBy=multi-user.target
+
+- name: iac | install_gh_actions.yml | Reload GitHub Runner systemd
+  systemd:
+    daemon_reload: yes
+
+- name: iac | install_gh_actions.yml | Enable and start GitHub Runner
+  systemd:
+    name: github-runner
+    state: started
+    enabled: yes
 
 
 ###################################################################
