@@ -3,21 +3,21 @@
 - name: iac | install_gh_actions.yml | create group
   tags: users
   group:
-    name: {{ runner_user }}
+    name: "{{ runner_user }}"
     state: present
 
 - name: iac | install_gh_actions.yml | Check if user {{ runner_user }} exists
   getent:
     database: passwd
-    key: {{ runner_user }}
+    key: "{{ runner_user }}"
   register: user_check
   ignore_errors: yes
 
 - name: iac | install_gh_actions.yml | create user {{ runner_user }}
   tags: users
   user:
-    name: {{ runner_user }}
-    group: {{ runner_user }}
+    name: "{{ runner_user }}"
+    group: "{{ runner_user }}"
 #    groups: adm,ansible,sudo
     state: present
     comment: "{{ runner_user }}"
