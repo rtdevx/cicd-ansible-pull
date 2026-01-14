@@ -23,7 +23,7 @@
 
 - name: servers_iac | Install Terraform
   package:
-    name: terraform=1.14.3-1 # NOTE: run `apt-cache madison terraform` to see how apt resolves the terraform version
+    name: terraform={{ terraform_version }}
     state: latest
   when: ansible_distribution in ["Debian", "Ubuntu"]
 
