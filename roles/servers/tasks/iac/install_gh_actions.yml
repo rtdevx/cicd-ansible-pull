@@ -48,6 +48,7 @@
     mode: 0700
   with_items:
     - { dir: '/home/{{ runner_user }}/.ssh' }
+    - { dir: '/home/{{ runner_user }}/.vault_key' } # for ansible vault
 
 # NOTE: Download and install GitHub runner
 
@@ -94,24 +95,52 @@
 
 # NOTE: Configure runner
 
-# NOTE: Mount nfs to access ansible_key
+- name: iac | install_gh_actions.yml | Configure runner
+  command: >
+    ./config.sh --unattended
+    --url {{ github_repo_url }}
+    --token {{ lookup('env','SECRET_GITHUB_RUNNER') }}
+    --name {{ inventory_hostname }}
+    --labels {{ runner_labels }}
+  args:
+    chdir: "{{ runner_dir }}"
+  become_user: "{{ runner_user }}"
+  register: runner_config
+  changed_when: "'Runner successfully added' in runner_config.stdout"
 
-- name: iac | install_gh_actions.yml | Ensure NFS client packages are installed
-  package:
-    name: nfs-common
-    state: present
+- name: iac | install_gh_actions.yml | Install systemd service for GitHub Runner
+  copy:
+    dest: /etc/systemd/system/github-runner.service
+    content: |
+      [Unit]
+      Description=GitHub Actions Runner
+      After=network.target
 
-- name: iac | install_gh_actions.yml | Create mount directory
-  file:
-    path: "{{ mount_point }}"
-    state: directory
-    mode: '0700'
+      [Service]
+      ExecStart={{ runner_dir }}/run.sh
+      User={{ runner_user }}
+      WorkingDirectory={{ runner_dir }}
+      Restart=always
 
-- name: iac | install_gh_actions.yml | Mount read-only NFS share and ensure persistence
-  mount:
-    src: "{{ nfs_server }}:{{ nfs_export }}"
-    path: "{{ mount_point }}"
-    fstype: nfs
-    opts: "ro,sync,hard,intr"
-    state: mounted
+      [Install]
+      WantedBy=multi-user.target
 
+- name: iac | install_gh_actions.yml | Reload GitHub Runner systemd
+  systemd:
+    daemon_reload: yes
+
+- name: iac | install_gh_actions.yml | Enable and start GitHub Runner
+  systemd:
+    name: github-runner
+    state: started
+    enabled: yes
+
+
+###################################################################
+
+#- name: servers_iac | Install Terraform {{ terraform_version }}
+#  package:
+#    name: terraform={{ terraform_version }}
+#    state: present
+#    allow_downgrade: true
+#  when: ansible_distribution in ["Debian", "Ubuntu"]
