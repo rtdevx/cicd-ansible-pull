@@ -1,3 +1,3 @@
 # NOTE: iac/install_terraform.yml
 
-terraform_version: 1.14.3-1 # NOTE: run `apt-cache madison terraform` to see how apt resolves the terraform version
+terraform_version: 1.14.2-1 # NOTE: run `apt-cache madison terraform` to see how apt resolves the terraform version
