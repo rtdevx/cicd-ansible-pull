@@ -1,5 +1,9 @@
 # NOTE: Install GitHub Actions self-hosted
 
+- name: iac | install_gh_actions.yml | Load role-specific variables
+  include_vars:
+    file: secrets.encrypted
+
 # NOTE: Create self-hosted user
 
 - name: iac | install_gh_actions.yml | create group
