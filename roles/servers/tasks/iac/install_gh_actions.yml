@@ -1,5 +1,7 @@
 # NOTE: Install GitHub Actions self-hosted
 
+# NOTE: Create self-hosted user
+
 - name: iac | install_gh_actions.yml | create group
   tags: users
   group:
@@ -46,6 +48,51 @@
     mode: 0700
   with_items:
     - { dir: '/home/{{ runner_user }}/.ssh' }
+
+# NOTE: Download and configure runner
+
+- name: iac | install_gh_actions.yml | Create runner directory
+  file:
+    path: "{{ runner_dir }}"
+    state: directory
+    owner: "{{ runner_user }}"
+    group: "{{ runner_user }}"
+    mode: '0755'
+
+- name: iac | install_gh_actions.yml | Get latest runner release metadata
+  uri:
+    url: https://api.github.com/repos/actions/runner/releases/latest
+    return_content: yes
+  register: runner_release
+  when: runner_version == "latest"
+
+- name: iac | install_gh_actions.yml | Set runner download URL
+  set_fact:
+    runner_url: >-
+      {% if runner_version == "latest" %}
+      {{ runner_release.json.assets
+          | selectattr('name','search','linux-x64')
+          | map(attribute='browser_download_url')
+          | first }}
+      {% else %}
+      https://github.com/actions/runner/releases/download/v{{ runner_version }}/actions-runner-linux-x64-{{ runner_version }}.tar.gz
+      {% endif %}
+
+- name: iac | install_gh_actions.yml | Download runner archive
+  get_url:
+    url: "{{ runner_url }}"
+    dest: "{{ runner_dir }}/actions-runner.tar.gz"
+    mode: '0644'
+
+- name: iac | install_gh_actions.yml | Extract runner
+  unarchive:
+    src: "{{ runner_dir }}/actions-runner.tar.gz"
+    dest: "{{ runner_dir }}"
+    remote_src: yes
+    owner: "{{ runner_user }}"
+    group: "{{ runner_user }}"
+
+
 
 ###################################################################
 
