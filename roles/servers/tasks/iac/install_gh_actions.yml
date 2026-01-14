@@ -58,8 +58,7 @@
     group: "{{ runner_user }}"
     mode: 0700
   with_items:
-    - { dir: '/home/{{ runner_user }}/.vault_key' }    
-
+    - { file: '/home/{{ runner_user }}/.vault_key' }
 
 # NOTE: Download and install GitHub runner
 
