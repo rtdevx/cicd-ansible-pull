@@ -62,9 +62,13 @@
 
 - name: iac | install_gh_actions.yml | create .vault_key file
   file:
-    path: /home/{{ runner_user }}/.vault_key
+    path: "{{ item.dir }}"
     state: touch
-    mode: 0700   
+    owner: "{{ runner_user }}"
+    group: "{{ runner_user }}"
+    mode: 0700
+  with_items:
+    - { file: '/home/{{ runner_user }}/.vault_key' }       
 
 # NOTE: Download and install GitHub runner
 
