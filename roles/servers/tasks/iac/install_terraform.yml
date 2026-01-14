@@ -23,7 +23,7 @@
 
 - name: servers_iac | Install Terraform
   package:
-    name: terraform={{ terraform_version }}
+    name: terraform={{ terraform_version }} --allow-downgrades
     state: latest
   when: ansible_distribution in ["Debian", "Ubuntu"]
 
