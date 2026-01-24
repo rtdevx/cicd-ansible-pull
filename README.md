@@ -5,7 +5,7 @@ Ansible pull repository for Ubuntu-based Servers and Desktops.
 
 ```
 sudo apt update && sudo apt install -y curl
-bash <(curl -s https://github.com/rtdevx/homelab/tree/main/ansible-pull/scripts/bootstrap.sh)
+bash <(curl -s https://raw.githubusercontent.com/rtdevx/iac-ansible-pull/main/scripts/bootstrap.sh)
 ```
 
 `scripts/bootstrap.sh` is creating `/usr/local/bin/ansible-wrapper` ececutable as well as `systemd`
