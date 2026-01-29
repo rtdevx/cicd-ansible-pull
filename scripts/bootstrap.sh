@@ -29,6 +29,13 @@ sudo -u ansible mkdir -p /home/ansible/.ssh
 sudo chmod 700 /home/ansible/.ssh
 sudo chown ansible:ansible /home/ansible/.ssh
 
+# INFO: Prepare Ansible vault file for ansible user
+echo "Preparing Ansible vault file for ansible user..."
+
+sudo touch /home/ansible/.vault_key
+sudo chown ansible:ansible /home/ansible/.vault_key
+sudo chmod 0600 /home/ansible/.vault_key
+
 # INFO: Install dependencies
 echo "Installing dependencies..."
 sudo apt update -y
