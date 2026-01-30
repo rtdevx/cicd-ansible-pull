@@ -3,6 +3,7 @@
 - name: iac | install_gh_actions.yml | Load role-specific variables
   include_vars:
     file: secrets.encrypted
+    password: "{{ lookup('file', '~/.vault_key') }}"
 
 # NOTE: Create self-hosted user
 

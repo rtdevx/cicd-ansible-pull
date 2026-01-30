@@ -4,8 +4,8 @@
 
 #  - import_tasks: ufw.yml  
 
-  - include_tasks: iac/install_terraform.yml
-    when: servers_iac is defined and servers_iac == true
+#  - include_tasks: iac/install_terraform.yml
+#    when: servers_iac is defined and servers_iac == true
 
   - include_tasks: iac/install_gh_actions.yml
     when: servers_iac is defined and servers_iac == true    
